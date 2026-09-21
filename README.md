@@ -90,12 +90,8 @@ curl -X POST http://localhost:8080/api/transfers \
 
 - `docs/architecture.md` — diagram, why double entry, failure modes
 - `docs/adr/` — the three decisions worth arguing about
-- `docs/explain-plans.md` — query plans behind each index
-- `docs/benchmarks.md` — throughput, latency and coverage numbers
-- `docs/ai-usage.md` — how AI tooling was used and what it was not trusted with
 
 ## Status
 
 Core posting path, outbox, settlement consumer, security, observability and CI
-are in place. Next: dead letter topic wiring, schema registry with Avro, and a
-reconciliation job that rebuilds balances from entries and alerts on drift.
+are in place.

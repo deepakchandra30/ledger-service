@@ -21,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Optimistic locking means some lose the race and are rejected with a conflict;
  * what must never happen is a balance that does not match the entries written.
  *
- * Record the numbers this prints in docs/benchmarks.md.
  */
 @IntegrationTest
 @Import(IntegrationTest.Containers.class)
