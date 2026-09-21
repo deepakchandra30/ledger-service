@@ -1,0 +1,37 @@
+{
+  "realm": "ledger",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "ledger-cli",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "local-dev-secret",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "attributes": {
+        "access.token.lifespan": "3600"
+      }
+    }
+  ],
+  "clientScopes": [
+    {
+      "name": "ledger.read",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true"
+      }
+    },
+    {
+      "name": "ledger.write",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true"
+      }
+    }
+  ],
+  "defaultDefaultClientScopes": [
+    "ledger.read",
+    "ledger.write"
+  ]
+}

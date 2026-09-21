@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: ledger-settlement
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/ledger}
+    username: ${DB_USER:ledger}
+    password: ${DB_PASSWORD:ledger}
+  jpa:
+    hibernate:
+      ddl-auto: update
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKERS:localhost:9092}
+    consumer:
+      group-id: settlement
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+    listener:
+      ack-mode: record
+
+ledger:
+  topics:
+    transfers: ledger.transfers.v1
+
+resilience4j:
+  retry:
+    instances:
+      settlement:
+        max-attempts: 3
+        wait-duration: 200ms
+        exponential-backoff-multiplier: 2
+  circuitbreaker:
+    instances:
+      settlement:
+        sliding-window-size: 20
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  server:
+    port: 8091

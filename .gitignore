@@ -1,0 +1,9 @@
+build/
+.gradle/
+node_modules/
+dist/
+*.class
+.env
+.terraform/
+terraform.tfstate*
+.idea/

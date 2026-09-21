@@ -1,0 +1,33 @@
+{
+  "title": "Ledger",
+  "uid": "ledger-overview",
+  "schemaVersion": 39,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Transfers posted per second",
+      "targets": [{ "expr": "rate(ledger_transfers_posted_total[1m])" }],
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 }
+    },
+    {
+      "type": "timeseries",
+      "title": "Post latency p99",
+      "targets": [
+        { "expr": "histogram_quantile(0.99, rate(ledger_transfers_latency_seconds_bucket[5m]))" }
+      ],
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 }
+    },
+    {
+      "type": "timeseries",
+      "title": "Outbox backlog",
+      "targets": [{ "expr": "rate(ledger_outbox_published_total[1m])" }],
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 }
+    },
+    {
+      "type": "stat",
+      "title": "Duplicate settlements dropped",
+      "targets": [{ "expr": "settlement_duplicates_total" }],
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 }
+    }
+  ]
+}
